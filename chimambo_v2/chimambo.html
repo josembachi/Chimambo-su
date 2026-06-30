@@ -277,29 +277,114 @@ font-size: 14px;
 .hidden {
 display: none !important;
         }
+@media (max-width: 1024px) {
+  .header-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    height: auto;
+    padding: 16px 20px;
+  }
+  .header-actions {
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    width: 100%;
+  }
+  .section-hero {
+    padding: 80px 20px;
+  }
+  .section {
+    padding: 50px 20px;
+  }
+  .grid {
+    gap: 24px;
+  }
+}
 @media (max-width: 768px) {
-nav {
-gap: 15px;
-            }
-nav a {
-font-size: 12px;
-            }
-.section-hero h1 {
-font-size: 32px;
-            }
-.section-hero p {
-font-size: 16px;
-            }
-h2 {
-font-size: 28px;
-            }
-.toast {
-left: 16px;
-right: 16px;
-bottom: 16px;
-max-width: none;
-            }
-        }
+  html {
+    font-size: 15px;
+  }
+  .header-container {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .logo {
+    justify-content: center;
+    width: 100%;
+  }
+  nav {
+    gap: 12px;
+    padding-top: 10px;
+  }
+  nav a {
+    font-size: 13px;
+    padding: 8px 6px;
+  }
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  .section-hero {
+    padding: 50px 16px;
+  }
+  .section-hero h1 {
+    font-size: 30px;
+  }
+  .section-hero p {
+    font-size: 16px;
+  }
+  .section-hero img {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  .section {
+    padding: 30px 16px;
+  }
+  .container {
+    padding: 0 16px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .card {
+    padding: 24px;
+  }
+  form {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  #page-contacto .container > div {
+    display: block;
+  }
+  #page-contacto .container > div > div {
+    width: 100%;
+  }
+  #page-contacto .container {
+    max-width: 100%;
+  }
+  .toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: none;
+  }
+}
 </style>
 </head>
 <body>
@@ -455,29 +540,22 @@ max-width: none;
 </div>
 </div>
 <!-- Página: Contacto -->
-<div id="page-contacto" class="page hidden">
-<div class="section">
-<div class="container">
+<div id="page-contacto" class="page hidden" ; >
+
+<div class="section"  >
+<div class="container" >
+
+</div>
+</div>
+
+<div style="max-width: 3000px; margin: 0 auto; line-height: 1.8;">
+
+<div>
 <h2>Entre em Contacto</h2>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 800px; margin: 0 auto;">
-<div>
-<h3>Informações</h3>
-<div style="margin-bottom: 20px;">
-<p><strong>Email:</strong></p>
-<p><a href="mailto:manning.chimambo@gmail.com">manning.chimambo@gmail.com</a></p>
-</div>
-<div style="margin-bottom: 20px;">
-<p><strong>Telefone:</strong></p>
-<p><a href="tel:+244972614174">+244 972 614 174</a></p>
-</div>
-<div>
-<p><strong>Localização:</strong></p>
-<p>Luanda, Patriota, Angomart</p>
-</div>
-</div>
-<div>
-<h3>Envie-nos uma Mensagem</h3>
+
+   
 <form id="contactForm">
+     <h3>Envie-nos uma Mensagem</h3>
 <div class="form-group">
 <label for="contactNome">Nome</label>
 <input type="text" id="contactNome" required>
@@ -491,7 +569,29 @@ max-width: none;
 <textarea id="contactMensagem" required></textarea>
 </div>
 <button type="submit" class="btn btn-primary" style="width: 100%; cursor: pointer;">Enviar Mensagem</button>
+
+<h3>Informações</h3>
+<div style="margin-bottom: 20px;">
+<p><strong>Email:</strong></p>
+<p><a href="mailto:manning.chimambo@gmail.com">manning.chimambo@gmail.com</a></p>
+</div>
+<div style="margin-bottom: 20px;">
+<p><strong>Telefone:</strong></p>
+<p><a href="tel:+244972614174">+244 972 614 174</a></p>
+</div>
+<div>
+<p><strong>Localização:</strong></p>
+<p>Luanda, Patriota, Angomart</p>
+
 </form>
+<div  >
+
+
+</div>
+<div>
+
+
+
 </div>
 </div>
 </div>
