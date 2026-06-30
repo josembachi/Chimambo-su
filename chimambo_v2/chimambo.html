@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chimambo SU - Soluções Digitais</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+        }
+body {
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+line-height: 1.6;
+color: #333333;
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+        }
+/* Header */
+header {
+background: rgb(255, 255, 255);
+border-bottom: 1px solid #e0e0e0;
+position: sticky;
+top: 0;
+z-index: 100;
+box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+.header-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 20px;
+height: 64px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+        }
+.logo {
+display: flex;
+align-items: center;
+gap: 10px;
+font-weight: bold;
+font-size: 20px;
+color: #21a6e4;
+text-decoration: none;
+cursor: pointer;
+        }
+.logo-icon {
+width: 36px;
+height: 36px;
+background:#21a6e4;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+font-size: 20px;
+        }
+nav {
+display: flex;
+gap: 30px;
+        }
+nav a {
+color: #666;
+text-decoration: none;
+font-size: 14px;
+transition: color 0.3s;
+        }
+nav a:hover, nav a.active {
+color:#21a6e4;
+font-weight: 600;
+        }
+.header-actions {
+display: flex;
+gap: 10px;
+        }
+.btn {
+padding: 8px 16px;
+border-radius: 6px;
+text-decoration: none;
+border: none;
+cursor: pointer;
+font-size: 14px;
+transition: all 0.3s;
+font-weight: 500;
+        }
+.btn-ghost {
+color: #21a6e4;
+background: transparent;
+border: 1px solid #21a6e4;
+        }
+.btn-ghost:hover {
+background: #21a6e4;
+color: white;
+        }
+.btn-primary {
+background:#21a6e4;
+color: white;
+        }
+.btn-primary:hover {
+background: #1a85b6;
+        }
+.btn-secondary {
+background: #21a6e4;
+color: rgb(255, 255, 255);
+        }
+.btn-secondary:hover {
+background:#1a85b6;
+        }
+/* Main */
+main {
+flex: 1;
+        }
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 20px;
+        }
+.section {
+padding: 60px 20px;
+        }
+.section-hero {
+background: linear-gradient(135deg, #5ec6d8 0%, #21a6e4 100%);
+color: white;
+padding: 100px 20px;
+text-align: center;
+        }
+.section-hero img {
+max-width: 400px;
+width: 100%;
+display: block;
+margin: 0 auto 24px;
+border-radius: 12px;
+        }
+.section-hero h1 {
+font-size: 48px;
+margin-bottom: 20px;
+font-weight: 700;
+        }
+.section-hero p {
+font-size: 20px;
+margin-bottom: 30px;
+opacity: 0.9;
+        }
+h2 {
+font-size: 36px;
+margin-bottom: 30px;
+text-align: center;
+color: #1a1a1a;
+        }
+h3 {
+font-size: 24px;
+margin-bottom: 15px;
+color:#21a6e4;
+        }
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 30px;
+margin-bottom: 30px;
+        }
+.card {
+border: 1px solid #e0e0e0;
+border-radius: 8px;
+padding: 30px;
+transition: all 0.3s;
+        }
+.card:hover {
+box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+transform: translateY(-5px);
+        }
+.card h3 {
+margin-top: 0;
+        }
+.card p {
+color: #666;
+margin: 10px 0;
+        }
+/* Form */
+form {
+max-width: 500px;
+margin: 30px auto;
+        }
+.form-group {
+margin-bottom: 20px;
+        }
+label {
+display: block;
+margin-bottom: 8px;
+font-weight: 500;
+color: #333;
+        }
+input, textarea, select {
+width: 100%;
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 4px;
+font-size: 14px;
+font-family: inherit;
+        }
+textarea {
+resize: vertical;
+min-height: 120px;
+        }
+small {
+font-size: 12px;
+        }
+/* Toast notifications */
+.toast {
+position: fixed;
+bottom: 24px;
+right: 24px;
+background: #1a1a1a;
+color: #fff;
+padding: 14px 22px;
+border-radius: 8px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+z-index: 1000;
+max-width: 340px;
+font-size: 14px;
+line-height: 1.5;
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.3s ease, transform 0.3s ease;
+pointer-events: none;
+        }
+.toast.show {
+opacity: 1;
+transform: translateY(0);
+pointer-events: auto;
+        }
+.toast.success {
+background: #16a34a;
+        }
+.toast.error {
+background: #dc2626;
+        }
+/* Footer */
+footer {
+background: #f5f5f5;
+border-top: 1px solid #e0e0e0;
+padding: 40px 20px 20px;
+margin-top: 60px;
+        }
+.footer-content {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 30px;
+margin-bottom: 30px;
+        }
+.footer-section h4 {
+font-size: 16px;
+margin-bottom: 15px;
+color:#21a6e4;
+        }
+.footer-section ul {
+list-style: none;
+        }
+.footer-section ul li {
+margin-bottom: 8px;
+        }
+.footer-section a {
+color: #666;
+text-decoration: none;
+        }
+.footer-section a:hover {
+color:#21a6e4;
+        }
+.footer-bottom {
+border-top: 1px solid #ddd;
+padding-top: 20px;
+text-align: center;
+color: #999;
+font-size: 14px;
+        }
+.hidden {
+display: none !important;
+        }
+@media (max-width: 768px) {
+nav {
+gap: 15px;
+            }
+nav a {
+font-size: 12px;
+            }
+.section-hero h1 {
+font-size: 32px;
+            }
+.section-hero p {
+font-size: 16px;
+            }
+h2 {
+font-size: 28px;
+            }
+.toast {
+left: 16px;
+right: 16px;
+bottom: 16px;
+max-width: none;
+            }
+        }
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+<div class="header-container">
+<a href="#" class="logo" onclick="navigate('/'); return false">
+<div class="logo-icon">🌿</div>
+<span>Chimambo <strong>SU</strong></span>
+</a>
+<nav id="nav">
+<a href="#" onclick="navigate('/'); return false" class="nav-link active" data-page="/">Início</a>
+<a href="#" onclick="navigate('/servicos'); return false" class="nav-link" data-page="/servicos">Serviços</a>
+<a href="#" onclick="navigate('/sobre'); return false" class="nav-link" data-page="/sobre">Sobre</a>
+<a href="#" onclick="navigate('/contacto'); return false" class="nav-link" data-page="/contacto">Contacto</a>
+<a href="#" onclick="navigate('/recrutamento'); return false" class="nav-link" data-page="/recrutamento">Recrutamento</a>
+</nav>
+<div class="header-actions">
+<a href="#" onclick="navigate('/auth'); return false" class="btn btn-ghost">Entrar</a>
+<a href="#" onclick="navigate('/pedido'); return false" class="btn btn-secondary">Pedir Serviço</a>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main>
+<!-- Página: Início -->
+<div id="page-home" class="page">
+<div class="section-hero">
+<img src="./imag/imag_1.jpg" alt="Equipa Chimambo SU">
+<div class="container">
+<h1 style="color: #070b0e;">Bem-vindo ao Chimambo SU</h1>
+<p style="color: #070b0e;">Ambientes impecáveis, seguros e prontos para o seu dia</p>
+<a href="#" onclick="navigate('/servicos'); return false" class="btn btn-primary" style="padding: 12px 30px; display: inline-block;">Explorar Serviços</a>
+</div>
+</div>
+<div class="section">
+<img style="margin: 0 auto 30px;display: block; max-width: 500px; width: 100%; border-radius: 12px;" src="imag/imag_3.jpg" alt="Profissionais Chimambo SU" loading="lazy">
+<div class="container">
+<h2>Por que escolher-nos?</h2>
+<div class="grid">
+<div class="card">
+<h3>💼 Profissionalismo</h3>
+<p>Equipa qualificada com experiência em diversos serviços.</p>
+</div>
+<div class="card">
+<h3>⚡ Qualidade</h3>
+<p>Entregamos soluções de alta qualidade e performance.</p>
+</div>
+<div class="card">
+<h3>🎯 Resultados</h3>
+<p>Focamos em resultados mensuráveis e satisfação do cliente.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Página: Recrutamento -->
+<div id="page-recrutamento" class="page hidden">
+<div class="section">
+<div class="container">
+<h2>Candidate-se a um Serviço</h2>
+<form id="uploadForm" style="max-width: 600px; margin: 0 auto;">
+<div class="form-group">
+<label for="titulo">Nome completo</label>
+<input type="text" id="titulo" placeholder="Ex: Jose Antonio Ribeiro" required>
+</div>
+<div class="form-group">
+<label for="disciplinaMaterial">Serviço pretendido</label>
+<select id="disciplinaMaterial" required>
+<option value="">Selecione o serviço</option>
+<option value="Doméstica">Doméstica</option>
+<option value="Jardinagem">Jardinagem</option>
+<option value="Consultoria Digital">Consultoria Digital</option>
+<option value="Babá">Babá</option>
+<option value="Manutenção & Suporte">Manutenção &amp; Suporte</option>
+<option value="Recrutamento e Terceirização">Recrutamento e Terceirização</option>
+</select>
+</div>
+<div class="form-group">
+<label for="arquivo">Currículo (PDF, Word ou foto)</label>
+<input type="file" id="arquivo" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" required>
+<small style="color:#888; display:block; margin-top:6px;">Depois de enviar, anexe este ficheiro na conversa do WhatsApp que se irá abrir.</small>
+</div>
+<div class="form-group">
+<label for="descricao">Descrição</label>
+<textarea id="descricao" rows="3" placeholder="Conte-nos sobre a sua experiência e disponibilidade"></textarea>
+</div>
+<button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">Enviar Candidatura</button>
+</form>
+</div>
+</div>
+</div>
+<!-- Página: Serviços -->
+<div id="page-servicos" class="page hidden">
+<div class="section">
+<div class="container">
+<h2>Nossos Serviços</h2>
+<div class="grid">
+<div class="card">
+<h3>Doméstica</h3>
+<p>Serviços de limpeza e cozinha com as melhores empregadas qualificadas para o serviço.</p>
+</div>
+<div class="card">
+<h3>Babá</h3>
+<p>Deixe os seus filhos nas mãos certas com uma babá qualificada para o serviço.</p>
+</div>
+<div class="card">
+<h3>Jardinagem</h3>
+<p>Manutenção de gramados, podas de árvores, controlo de pragas e paisagismo residencial ou de condomínios.</p>
+</div>
+<div class="card">
+<h3>Consultoria Digital</h3>
+<p>Estratégia digital para adequar às suas preferências. Análise e recomendações personalizadas.</p>
+</div>
+<div class="card">
+<h3>Manutenção & Suporte</h3>
+<p>Suporte contínuo, atualizações e melhorias.</p>
+</div>
+<div class="card">
+<h3>Recrutamento e Terceirização de Profissionais</h3>
+<p>Análise e seleção dos candidatos para o serviço.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Página: Sobre -->
+<div id="page-sobre" class="page hidden">
+<div>
+<img style="margin: 0 auto ; display: block; max-width: 800px; width: 100%;" src="imag/imag_4.jpg" alt="Equipa Chimambo SU" loading="lazy">
+</div>
+<div class="section">
+<div class="container">
+<h2>Sobre Chimambo SU</h2>
+<div style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+<p><strong>Chimambo SU Lda</strong> é uma empresa angolana prestadora de serviços nas áreas de doméstica, babá, limpeza e jardinagem.</p>
+<h3 style="margin-top: 30px;">Nossa Missão</h3>
+<p>Transformar as necessidades em soluções, ajudando empresas e indivíduos com serviços competentes.</p>
+<h3 style="margin-top: 30px;">Nossa Visão</h3>
+<p>Ser a empresa de referência em Angola conhecida pela excelência, inovação e compromisso com o sucesso dos nossos clientes.</p>
+<h3 style="margin-top: 30px;">Valores</h3>
+<ul style="margin-left: 20px;">
+<li>Qualidade em tudo que fazemos</li>
+<li>Inovação contínua</li>
+<li>Excelência no atendimento</li>
+<li>Integridade e transparência</li>
+<li>Compromisso com resultados</li>
+</ul>
+<h3 style="margin-top: 30px;">Experiência</h3>
+<p>Com vários anos de experiência no mercado, atendendo clientes de diversos setores.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Página: Contacto -->
+<div id="page-contacto" class="page hidden">
+<div class="section">
+<div class="container">
+<h2>Entre em Contacto</h2>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 800px; margin: 0 auto;">
+<div>
+<h3>Informações</h3>
+<div style="margin-bottom: 20px;">
+<p><strong>Email:</strong></p>
+<p><a href="mailto:manning.chimambo@gmail.com">manning.chimambo@gmail.com</a></p>
+</div>
+<div style="margin-bottom: 20px;">
+<p><strong>Telefone:</strong></p>
+<p><a href="tel:+244972614174">+244 972 614 174</a></p>
+</div>
+<div>
+<p><strong>Localização:</strong></p>
+<p>Luanda, Patriota, Angomart</p>
+</div>
+</div>
+<div>
+<h3>Envie-nos uma Mensagem</h3>
+<form id="contactForm">
+<div class="form-group">
+<label for="contactNome">Nome</label>
+<input type="text" id="contactNome" required>
+</div>
+<div class="form-group">
+<label for="contactEmail">Email</label>
+<input type="email" id="contactEmail" required>
+</div>
+<div class="form-group">
+<label for="contactMensagem">Mensagem</label>
+<textarea id="contactMensagem" required></textarea>
+</div>
+<button type="submit" class="btn btn-primary" style="width: 100%; cursor: pointer;">Enviar Mensagem</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Página: Fazer Pedido -->
+<div id="page-pedido" class="page hidden">
+<div class="section">
+<div class="container">
+<h2>Faça um Pedido</h2>
+<form id="pedidoForm" style="max-width: 600px; margin: 0 auto;">
+<div class="form-group">
+<label for="pedidoServico">Tipo de Serviço *</label>
+<select id="pedidoServico" required>
+<option value="">Selecione um serviço...</option>
+<option value="domestica">Doméstica</option>
+<option value="baba">Babá</option>
+<option value="jardinagem">Jardinagem</option>
+<option value="consultoria">Consultoria Digital</option>
+<option value="manutencao">Manutenção & Suporte</option>
+<option value="outros">Outros</option>
+</select>
+</div>
+<div class="form-group">
+<label for="pedidoDescricao">Descrição do Pedido *</label>
+<textarea id="pedidoDescricao" placeholder="Descreva o seu pedido em detalhe..." required></textarea>
+</div>
+<div class="form-group">
+<label for="pedidoOrcamento">Periodicidade do Serviço *</label>
+<select id="pedidoOrcamento" required>
+<option value="">Selecione a periodicidade...</option>
+<option value="diario">Diário</option>
+<option value="semanal">Semanal</option>
+<option value="mensal">Mensal</option>
+<option value="anual">Anual</option>
+</select>
+</div>
+<div class="form-group">
+<label for="pedidoNome">Seu Nome *</label>
+<input type="text" id="pedidoNome" required>
+</div>
+<div class="form-group">
+<label for="pedidoEmail">Email *</label>
+<input type="email" id="pedidoEmail" required>
+</div>
+<div class="form-group">
+<label for="pedidoTelefone">Telefone *</label>
+<input type="tel" id="pedidoTelefone" required>
+</div>
+<button type="submit" class="btn btn-secondary" style="width: 100%; padding: 12px; cursor: pointer;">Enviar Pedido</button>
+</form>
+</div>
+</div>
+</div>
+<!-- Página: Autenticação -->
+<div id="page-auth" class="page hidden">
+<div class="section">
+<div class="container">
+<h2 id="auth-title">Login</h2>
+<form id="authForm" style="max-width: 400px; margin: 0 auto;">
+<div class="form-group">
+<label for="authEmail">Email</label>
+<input type="email" id="authEmail" required>
+</div>
+<div class="form-group">
+<label for="authSenha">Senha</label>
+<input type="password" id="authSenha" required>
+</div>
+<div id="confirm-password-group" class="form-group hidden">
+<label for="confirm-pass">Confirmar Senha</label>
+<input type="password" id="confirm-pass">
+</div>
+<button type="submit" id="auth-btn" class="btn btn-primary" style="width: 100%; padding: 12px; cursor: pointer;">Entrar</button>
+</form>
+<p style="text-align: center; margin-top: 20px;">
+<span id="auth-toggle-text">Não tem conta? </span>
+<a href="#" onclick="toggleAuthMode(); return false" style="color: #21a6e4; text-decoration: none; font-weight: 600;">
+<span id="auth-toggle-link">Cadastre-se</span>
+</a>
+</p>
+</div>
+</div>
+</div>
+<!-- Página: Dashboard -->
+<div id="page-dashboard" class="page hidden">
+<div class="section">
+<div class="container">
+<a href="#" onclick="navigate('/'); return false" style="color:#21a6e4; text-decoration:none; font-weight:600; display:inline-block; margin-bottom:20px;">← Voltar ao início</a>
+<h2>Dashboard</h2>
+<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+<div class="card" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);">
+<h3 style="color: #1e40af;">📊 Projetos</h3>
+<p style="font-size: 32px; font-weight: bold; color: #1e40af;">12</p>
+</div>
+<div class="card" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);">
+<h3 style="color: #16a34a;">👥 Clientes</h3>
+<p style="font-size: 32px; font-weight: bold; color: #16a34a;">8</p>
+</div>
+<div class="card" style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);">
+<h3 style="color: #7e22ce;">💰 Receita</h3>
+<p style="font-size: 32px; font-weight: bold; color: #7e22ce;">50k Kz</p>
+</div>
+<div class="card" style="background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);">
+<h3 style="color: #b45309;">⏳ Pendentes</h3>
+<p style="font-size: 32px; font-weight: bold; color: #b45309;">3</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-section">
+<h4>Chimambo SU Lda</h4>
+<p>Transformando o ambiente com os nossos serviços</p>
+</div>
+<div class="footer-section">
+<h4>Empresa</h4>
+<ul>
+<li><a href="#" onclick="navigate('/sobre'); return false;">Sobre Nós</a></li>
+<li><a href="#" onclick="navigate('/servicos'); return false;">Serviços</a></li>
+<li><a href="#" onclick="navigate('/contacto'); return false;">Contacto</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4>Serviços</h4>
+<ul>
+<li>Doméstica</li>
+<li>Babá</li>
+<li>Jardinagem</li>
+<li>Consultoria Digital</li>
+</ul>
+</div>
+<div class="footer-section">
+<h4>Contacto</h4>
+<ul>
+<li><a href="mailto:manning.chimambo@gmail.com">manning.chimambo@gmail.com</a></li>
+<li><a href="tel:+244972614174">+244 972 614 174</a></li>
+<li>Rua 1, Bairro Benfica, zona 3, Talatona, Luanda, Angola</li>
+</ul>
+</div>
+</div>               
+<div class="footer-bottom">
+                © 2026 Chimambo SU Lda. Todos os direitos reservados.
+</div>
+</div>
+</footer>
+<script>
+let isLoginMode = true;
+
+// Número de WhatsApp da empresa (a partir do contacto: +244 972 614 174)
+const WHATSAPP_NUMERO = '244972614174';
+
+function navigate(page) {
+// Hide all pages
+document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+// Remove active from all nav links
+document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+// Show selected page
+const pageElement = document.getElementById(`page-${getPageId(page)}`);
+if (pageElement) {
+pageElement.classList.remove('hidden');
+            }
+// Mark nav link as active
+const navLink = document.querySelector(`[data-page="${page}"]`);
+if (navLink) {
+navLink.classList.add('active');
+            }
+// Update history
+window.history.pushState({page}, '', page);
+// Scroll to top on every page change
+window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+function getPageId(page) {
+const map = {
+'/': 'home',
+'/servicos': 'servicos',
+'/recrutamento':'recrutamento',
+'/sobre': 'sobre',
+'/contacto': 'contacto',
+'/pedido': 'pedido',
+'/auth': 'auth',
+'/dashboard': 'dashboard'
+            };
+return map[page] || 'home';
+        }
+
+function toggleAuthMode() {
+isLoginMode = !isLoginMode;
+document.getElementById('auth-title').textContent = isLoginMode ? 'Login' : 'Cadastro';
+document.getElementById('confirm-password-group').classList.toggle('hidden');
+document.getElementById('auth-btn').textContent = isLoginMode ? 'Entrar' : 'Cadastrar';
+document.getElementById('auth-toggle-text').textContent = isLoginMode ? 'Não tem conta? ' : 'Já tem conta? ';
+document.getElementById('auth-toggle-link').textContent = isLoginMode ? 'Cadastre-se' : 'Faça login';
+        }
+
+// ---------- Notificações (toast) ----------
+function showToast(message, type = 'success') {
+let toast = document.getElementById('app-toast');
+if (!toast) {
+toast = document.createElement('div');
+toast.id = 'app-toast';
+toast.className = 'toast';
+document.body.appendChild(toast);
+            }
+toast.innerHTML = message;
+toast.className = `toast ${type} show`;
+clearTimeout(toast._timeoutId);
+toast._timeoutId = setTimeout(() => {
+toast.classList.remove('show');
+            }, 6000);
+        }
+
+// ---------- Envio automático para o WhatsApp ----------
+function enviarParaWhatsApp(mensagem) {
+const url = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagem)}`;
+const novaJanela = window.open(url, '_blank');
+if (!novaJanela) {
+showToast(`Não foi possível abrir o WhatsApp automaticamente (verifique o bloqueador de pop-ups). <a href="${url}" target="_blank" style="color:#fff;text-decoration:underline;">Clique aqui para continuar</a>.`, 'error');
+return false;
+            }
+return true;
+        }
+
+// ---------- Formulário: Recrutamento ----------
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const nome = document.getElementById('titulo').value.trim();
+const servicoSelect = document.getElementById('disciplinaMaterial');
+const servico = servicoSelect.options[servicoSelect.selectedIndex].text;
+const arquivo = document.getElementById('arquivo').files[0];
+const descricao = document.getElementById('descricao').value.trim();
+
+let mensagem = 'Olá! Gostaria de me candidatar a um serviço.\n\n';
+mensagem += `*Nome:* ${nome}\n`;
+mensagem += `*Serviço pretendido:* ${servico}\n`;
+if (descricao) {
+mensagem += `*Sobre mim:* ${descricao}\n`;
+            }
+if (arquivo) {
+mensagem += `\n📎 Ficheiro: ${arquivo.name} (vou enviar o ficheiro nesta conversa)`;
+            }
+
+if (enviarParaWhatsApp(mensagem)) {
+showToast('Candidatura enviada! Anexe o seu currículo na conversa do WhatsApp que abriu.');
+this.reset();
+            }
+        });
+
+// ---------- Formulário: Contacto ----------
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const nome = document.getElementById('contactNome').value.trim();
+const email = document.getElementById('contactEmail').value.trim();
+const msg = document.getElementById('contactMensagem').value.trim();
+
+let mensagem = 'Olá! Tenho uma mensagem através do site.\n\n';
+mensagem += `*Nome:* ${nome}\n`;
+mensagem += `*Email:* ${email}\n`;
+mensagem += `*Mensagem:* ${msg}`;
+
+if (enviarParaWhatsApp(mensagem)) {
+showToast('Mensagem enviada! A abrir o WhatsApp...');
+this.reset();
+            }
+        });
+
+// ---------- Formulário: Pedido de Serviço ----------
+document.getElementById('pedidoForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const servicoSelect = document.getElementById('pedidoServico');
+const servico = servicoSelect.options[servicoSelect.selectedIndex].text;
+const descricao = document.getElementById('pedidoDescricao').value.trim();
+const orcamentoSelect = document.getElementById('pedidoOrcamento');
+const periodicidade = orcamentoSelect.options[orcamentoSelect.selectedIndex].text;
+const nome = document.getElementById('pedidoNome').value.trim();
+const email = document.getElementById('pedidoEmail').value.trim();
+const telefone = document.getElementById('pedidoTelefone').value.trim();
+
+let mensagem = 'Olá! Gostaria de solicitar um serviço.\n\n';
+mensagem += `*Serviço:* ${servico}\n`;
+mensagem += `*Descrição:* ${descricao}\n`;
+mensagem += `*Periodicidade:* ${periodicidade}\n`;
+mensagem += `*Nome:* ${nome}\n`;
+mensagem += `*Email:* ${email}\n`;
+mensagem += `*Telefone:* ${telefone}`;
+
+if (enviarParaWhatsApp(mensagem)) {
+showToast('Pedido enviado! A abrir o WhatsApp...');
+this.reset();
+            }
+        });
+
+// ---------- Formulário: Autenticação (simulado) ----------
+document.getElementById('authForm').addEventListener('submit', function(e) {
+e.preventDefault();
+if (isLoginMode) {
+showToast('Sessão iniciada com sucesso!');
+this.reset();
+navigate('/dashboard');
+            } else {
+showToast('Conta criada com sucesso! Agora faça login.');
+this.reset();
+toggleAuthMode();
+            }
+        });
+
+// Handle page back button
+window.addEventListener('popstate', (e) => {
+const page = e.state?.page || '/';
+navigate(page);
+        });
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+navigate('/');
+        });
+</script>
+</body>
+</html>
